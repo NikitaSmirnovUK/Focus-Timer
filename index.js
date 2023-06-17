@@ -5,17 +5,29 @@ const stopButton = document.getElementById('stop');
 
  let i = 66;
  let interval;
-
+ let min = 0;
+ let sec = 0;
 
 function onStartClick() {
+   
+
    interval = setInterval( () => {
        i = i + 1
 
-       const min = Math.floor( i / 60 );
-       const sec = i % 60;
+      const min = Math.floor( i / 60 );
+      const sec = i % 60;
+         if(min < 0) {
+            min + '0'
+         }if(sec < 0) {
+            sec = '0'
+         }
 
-       display.innerHTML = min + ':' + sec;
-   }, 1000)
+      //  '0' + min
+
+       display.innerHTML = '0'+ min + ':' + '0' + sec;
+   }, 1000);
+   
+   
 }
 
 startButton.addEventListener('click', onStartClick);
