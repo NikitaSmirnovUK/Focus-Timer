@@ -1,33 +1,49 @@
-const display = document.getElementById('display')
+const display = document.getElementById('display');
 const startButton = document.getElementById('start');
-const resetButton = document.getElementById('reset');
+const resetButton = document.getElementById('reset'); // Element
 const stopButton = document.getElementById('stop');
 
- let i = 0;
-
+ let i = 66;
  let interval;
 
- document.getElementById('start').addEventListener('click', () =>{
 
-    interval = setInterval(() => {
-        i = i+1
-         document.getElementById('display').innerHTML = i;
-    }, 1000)
-});
+function onStartClick() {
+   interval = setInterval( () => {
+       i = i + 1
+
+       const min = Math.floor( i / 60 );
+       const sec = i % 60;
+
+       display.innerHTML = min + ':' + sec;
+   }, 1000)
+}
+
+startButton.addEventListener('click', onStartClick);
  
 
-document.getElementById('stop').addEventListener('click', () =>{
-
+const onStopClick = () =>{
    clearInterval(interval);
-});
+} 
+
+stopButton.addEventListener('click', onStopClick);
 
 
-document.getElementById('reset').addEventListener('click', () =>{
-    display.innerHTML= 0;
-   
- });
+const onResetClick = () => {
+   clearInterval(interval);
+   i = 0;
+   display.innerHTML = i;
+}
+
+
+resetButton.addEventListener( 'click', onResetClick ); 
   
-    
+// Function declaration
+// function a() {}
+
+// Function expression
+// const a = function() {};
+// const b = () => {}
+
     
 
 
