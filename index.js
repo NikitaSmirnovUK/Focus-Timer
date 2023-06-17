@@ -1,25 +1,35 @@
-// const display = document.getElementById('display')
-// const startButton = document.getElementById('btn-start');
+const display = document.getElementById('display')
+const startButton = document.getElementById('start');
+const resetButton = document.getElementById('reset');
+const stopButton = document.getElementById('stop');
 
-// const stopButton = document.getElementById('btn-stop');
+ let i = 0;
 
-// let i = 0;
+ let interval;
 
-//  let interval;
+ document.getElementById('start').addEventListener('click', () =>{
 
-// startButton.onclick = function() {
-//     interval = setInterval(() => {
-//         i = i+1
-//          document.getElementById('display').innerHTML = i;
-//     }, 1000)
-// }
+    interval = setInterval(() => {
+        i = i+1
+         document.getElementById('display').innerHTML = i;
+    }, 1000)
+});
+ 
+
+document.getElementById('stop').addEventListener('click', () =>{
+
+   clearInterval(interval);
+});
+
+
+document.getElementById('reset').addEventListener('click', () =>{
+    display.innerHTML= 0;
+   
+ });
+  
     
     
-// stopButton.onclick = function() {
-//     clearInterval(interval)
-// }
 
- // addEventListener
 
 
 //  Добавить кнопку Reset и сделать что бы она работала.
@@ -28,39 +38,39 @@
 
 
 
-const input = document.getElementById('input');
-const blockTime = document.querySelectorAll('.time');
-let interval;
+// const input = document.getElementById('input');
+// const blockTime = document.querySelectorAll('.time');
+// let interval;
 
-blockTime.innerHTML= 0;
-input.value = 0;
+// blockTime.innerHTML= 0;
+// input.value = 0;
 
-document.getElementById('start').addEventListener('click', () => {
-    if (input.value < 0){
-        input.value = 0;
-        blockTime.innerHTML = 0;
-    }
+// document.getElementById('start').addEventListener('click', () => {
+//     if (input.value < 0){
+//         input.value = 0;
+//         blockTime.innerHTML = 0;
+//     }
     
-    blockTime.innerHTML = input.value;
+//     blockTime.innerHTML = input.value;
 
 
-        clearInterval(interval);
-    interval = setInterval(subtractTime, 1000);
-})
+//         clearInterval(interval);
+//     interval = setInterval(subtractTime, 1000);
+// })
 
-document.getElementById('stop').addEventListener('click', () =>{
-    clearInterval(interval);
-});
+// document.getElementById('stop').addEventListener('click', () =>{
+//     clearInterval(interval);
+// });
 
 
-document.getElementById('reset').addEventListener('click', () => {
-    input.value = 0;
-    blockTime.innerHTML = 0;
-});
+// document.getElementById('reset').addEventListener('click', () => {
+//     input.value = 0;
+//     blockTime.innerHTML = 0;
+// });
 
-function subtractTime(){
-    if (blockTime.innerHTML > 0){
-        blockTime.innerHTML--;
-        input.value--;
-    }
-}
+// function subtractTime(){
+//     if (blockTime.innerHTML > 0){
+//         blockTime.innerHTML--;
+//         input.value--;
+//     }
+// }
