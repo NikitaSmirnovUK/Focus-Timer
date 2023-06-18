@@ -16,15 +16,16 @@ function onStartClick() {
 
       const min = Math.floor( i / 60 );
       const sec = i % 60;
-         if(min < 0) {
-            min + '0'
-         }if(sec < 0) {
-            sec = '0'
-         }
 
-      //  '0' + min
+           if(min < 10) {
+            '0' + min
+           }if(sec < 10) {
+            '0' + sec 
+           }
 
-       display.innerHTML = '0'+ min + ':' + '0' + sec;
+      
+
+       display.innerHTML = min + ':' + sec;
    }, 1000);
    
    
@@ -60,8 +61,6 @@ resetButton.addEventListener( 'click', onResetClick );
 
 
 
-//  Добавить кнопку Reset и сделать что бы она работала.
-//  Передлать свойство onclick на addEventListener.
 
 
 
