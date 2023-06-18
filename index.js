@@ -3,40 +3,41 @@ const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset'); // Element
 const stopButton = document.getElementById('stop');
 
- let i = 66;
- let interval;
- let min = 0;
- let sec = 0;
+let i = 66;
+let interval;
+
 
 function onStartClick() {
-   
 
-   interval = setInterval( () => {
-       i = i + 1
 
-      const min = Math.floor( i / 60 );
-      const sec = i % 60;
+   interval = setInterval(() => {
+      i = i + 1
 
-           if(min < 10) {
-            '0' + min
-           }if(sec < 10) {
-            '0' + sec 
-           }
+      let min = Math.floor(i / 60);
+      let sec = i % 60;
 
-      
+      if (min < 10) {
+         min = "0" + min;
+      } if (sec < 10) {
+         sec = "0" + sec;
+      }
 
-       display.innerHTML = min + ':' + sec;
+
+
+
+
+      display.innerHTML = min + ':' + sec;
    }, 1000);
-   
-   
+
+
 }
 
 startButton.addEventListener('click', onStartClick);
- 
 
-const onStopClick = () =>{
+
+const onStopClick = () => {
    clearInterval(interval);
-} 
+}
 
 stopButton.addEventListener('click', onStopClick);
 
@@ -48,8 +49,8 @@ const onResetClick = () => {
 }
 
 
-resetButton.addEventListener( 'click', onResetClick ); 
-  
+resetButton.addEventListener('click', onResetClick);
+
 // Function declaration
 // function a() {}
 
@@ -57,7 +58,7 @@ resetButton.addEventListener( 'click', onResetClick );
 // const a = function() {};
 // const b = () => {}
 
-    
+
 
 
 
@@ -77,7 +78,7 @@ resetButton.addEventListener( 'click', onResetClick );
 //         input.value = 0;
 //         blockTime.innerHTML = 0;
 //     }
-    
+
 //     blockTime.innerHTML = input.value;
 
 
@@ -101,3 +102,4 @@ resetButton.addEventListener( 'click', onResetClick );
 //         input.value--;
 //     }
 // }
+
