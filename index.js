@@ -3,103 +3,48 @@ const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset'); // Element
 const stopButton = document.getElementById('stop');
 
-let i = 66;
-let interval;
+const minutesToPass = 45; //Минуты от которых идет отсчет таймера
+
+let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
+let interval; // интервал для обновления дисплея каждую секунду
 
 
 function onStartClick() {
-
-
    interval = setInterval(() => {
-      i = i + 1
-
-      let min = Math.floor(i / 60);
-      let sec = i % 60;
-
-      if (min < 10) {
-         min = "0" + min;
-      } if (sec < 10) {
-         sec = "0" + sec;
-      }
-
-
-
-
-
-      display.innerHTML = min + ':' + sec;
+      time = time - 1 // для отсчета времени обратно
+      displayTime();
    }, 1000);
-
-
 }
 
-startButton.addEventListener('click', onStartClick);
+startButton.addEventListener('click', onStartClick); // обратчик собитый 
 
 
 const onStopClick = () => {
-   clearInterval(interval);
+   clearInterval(interval);// отсановливает таймер 
 }
 
-stopButton.addEventListener('click', onStopClick);
+stopButton.addEventListener('click', onStopClick); // обратчик собитый 
 
 
 const onResetClick = () => {
    clearInterval(interval);
-   i = 0;
-   display.innerHTML = i;
+   time = minutesToPass * 60; //Сброс на исходное состояние
+   displayTime()
 }
-
 
 resetButton.addEventListener('click', onResetClick);
 
-// Function declaration
-// function a() {}
 
-// Function expression
-// const a = function() {};
-// const b = () => {}
+function displayTime() {
+   let min = Math.floor(time / 60); // Вычесляю сколько осталось минут 
+   let sec = time % 60;// Вычесляю сколько осталось секунд
 
+   if (min < 10)
+      min = "0" + min; //  
 
+   if (sec < 10)
+      sec = "0" + sec;
 
-
-
-
-
-
-
-// const input = document.getElementById('input');
-// const blockTime = document.querySelectorAll('.time');
-// let interval;
-
-// blockTime.innerHTML= 0;
-// input.value = 0;
-
-// document.getElementById('start').addEventListener('click', () => {
-//     if (input.value < 0){
-//         input.value = 0;
-//         blockTime.innerHTML = 0;
-//     }
-
-//     blockTime.innerHTML = input.value;
-
-
-//         clearInterval(interval);
-//     interval = setInterval(subtractTime, 1000);
-// })
-
-// document.getElementById('stop').addEventListener('click', () =>{
-//     clearInterval(interval);
-// });
-
-
-// document.getElementById('reset').addEventListener('click', () => {
-//     input.value = 0;
-//     blockTime.innerHTML = 0;
-// });
-
-// function subtractTime(){
-//     if (blockTime.innerHTML > 0){
-//         blockTime.innerHTML--;
-//         input.value--;
-//     }
-// }
+   display.innerHTML = min + ':' + sec;
+}
 
