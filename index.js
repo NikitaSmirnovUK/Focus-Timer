@@ -1,29 +1,41 @@
 const display = document.getElementById('display');
-const startButton = document.getElementById('start');
+const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
-const stopButton = document.getElementById('stop');
+
 
 const minutesToPass = 45; //Минуты от которых идет отсчет таймера
 
 let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
 let interval; // интервал для обновления дисплея каждую секунду
+let isTimerStarted = false; // Содержит состояние таймера
 
-
-function onStartClick() {
+function StartTimer() {
    interval = setInterval(() => {
       time = time - 1 // для отсчета времени обратно
       displayTime();
    }, 1000);
 }
 
-startButton.addEventListener('click', onStartClick); // обратчик собитый 
+startAndStopButton.addEventListener('click', StartAndStop) // обратчик собитый 
+
+function StartAndStop (){
+   if (!isTimerStarted){ // если таймер не запущен
+      StartTimer(); 
+      
+      isTimerStarted = true;
+      startAndStopButton.innerHTML = "Stop"
+   }else if (isTimerStarted){ // если таймер запущен
+         StopTimer(); 
+         startAndStopButton.innerHTML = "Start"
+         isTimerStarted = false;
+   }
+}
 
 
-const onStopClick = () => {
+const StopTimer = () => {
    clearInterval(interval);// отсановливает таймер 
 }
 
-stopButton.addEventListener('click', onStopClick); // обратчик собитый 
 
 
 const onResetClick = () => {
