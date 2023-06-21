@@ -3,7 +3,7 @@ const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
 
 
-const minutesToPass = 45; //Минуты от которых идет отсчет таймера
+const minutesToPass = 30; //Минуты от которых идет отсчет таймера
 
 let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
 let interval; // интервал для обновления дисплея каждую секунду
