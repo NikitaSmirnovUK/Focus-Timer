@@ -3,7 +3,7 @@ const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
 
 
-const minutesToPass = 30; //Минуты от которых идет отсчет таймера
+const minutesToPass = 50; //Минуты от которых идет отсчет таймера
 
 let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
 let interval; // интервал для обновления дисплея каждую секунду
@@ -14,6 +14,10 @@ function StartTimer() {
       time = time - 1 // для отсчета времени обратно
       displayTime();
    }, 1000);
+
+   isTimerStarted = true;
+   ChangeToStop();
+   showResetButton();
 }
 
 startAndStopButton.addEventListener('click', StartAndStop) // обратчик собитый 
@@ -21,27 +25,33 @@ startAndStopButton.addEventListener('click', StartAndStop) // обратчик �
 function StartAndStop (){
    if (!isTimerStarted){ // если таймер не запущен
       StartTimer(); 
-      
-      isTimerStarted = true;
-      startAndStopButton.innerHTML = "Stop"
    }else if (isTimerStarted){ // если таймер запущен
-         StopTimer(); 
-         startAndStopButton.innerHTML = "Start"
-         isTimerStarted = false;
+      StopTimer(); 
    }
 }
 
 
 const StopTimer = () => {
    clearInterval(interval);// отсановливает таймер 
+   ChangeToStart();
+   isTimerStarted = false;
 }
 
 
+function hideResetButton() {
+   resetButton.classList.add("hidden");
+}
+
+function showResetButton() {
+   resetButton.classList.remove("hidden");
+}
+
 
 const onResetClick = () => {
-   clearInterval(interval);
    time = minutesToPass * 60; //Сброс на исходное состояние
-   displayTime()
+   displayTime();
+   hideResetButton();
+   StopTimer();
 }
 
 resetButton.addEventListener('click', onResetClick);
@@ -50,7 +60,7 @@ resetButton.addEventListener('click', onResetClick);
 function displayTime() {
    let min = Math.floor(time / 60); // Вычесляю сколько осталось минут 
    let sec = time % 60;// Вычесляю сколько осталось секунд
-
+  
    if (min < 10)
       min = "0" + min; //  
 
@@ -60,3 +70,11 @@ function displayTime() {
    display.innerHTML = min + ':' + sec;
 }
 
+function ChangeToStart (){
+   startAndStopButton.innerHTML = "Start"
+}
+
+function ChangeToStop(){
+   startAndStopButton.innerHTML = "Stop"
+}
+displayTime();
