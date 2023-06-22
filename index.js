@@ -3,7 +3,7 @@ const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
 
 
-const minutesToPass = 50; //Минуты от которых идет отсчет таймера
+const minutesToPass = 0.1; //Минуты от которых идет отсчет таймера
 
 let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
 let interval; // интервал для обновления дисплея каждую секунду
@@ -66,6 +66,21 @@ function displayTime() {
 
    if (sec < 10)
       sec = "0" + sec;
+   
+   // if (time <= 0){
+   //   time = Number.toString('00:00')
+   //   clearInterval(interval)
+   // }
+     
+      if (time <= 0){
+         clearInterval(interval)
+         hideResetButton()
+         ChangeToStart ()
+         onResetClick()
+
+      }
+
+
 
    display.innerHTML = min + ':' + sec;
 }
