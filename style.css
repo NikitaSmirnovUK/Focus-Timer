@@ -32,3 +32,7 @@ button {
 .hidden {
     display: none;
 }
+
+.text-timer {
+    margin-bottom: 20px;
+}

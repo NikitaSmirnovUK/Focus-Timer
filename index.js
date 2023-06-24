@@ -1,28 +1,41 @@
 const display = document.getElementById('display');
 const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
+const TextTimer = document.getElementById('StateTimer'); 
+const Count = document.getElementById('stepCount');
 
-const minutesToPass = 0.05; //Минуты от которых идет отсчет таймера
 
-let time = minutesToPass * 60; // Для отсчета сколько осталось времени!
-let interval; // интервал для обновления дисплея каждую секунду
+
+const minutesForFocus = 10 / 60; //Минуты от которых идет отсчет таймера 
+const minuteForShortBreak = 5 / 60; 
+const minutesForLongBreak = 10 / 60;
+
+let time = minutesForFocus * 60; // Для отсчета сколько осталось времени!
 let isTimerStarted = false; // Содержит состояние таймера
+let step = 1;
+
+
+
 
 function tick() {
    time = time - 1 ;
 
+   displayTime();
+
    if (time === 0) {
-      StopTimer();
+      time = (step % 2 ? (step === 4 ? minutesForLongBreak : minuteForShortBreak ) : minutesForFocus) * 60;
+      step += 1
    }
 
-   displayTime();
 }
 
+
+let interval; // интервал для обновления дисплея каждую секунду
 function StartTimer() {
    interval = setInterval(tick, 1000);
    isTimerStarted = true;
    if (time === 0){
-      time = minutesToPass * 60;
+      time = minutesForFocus * 60;
    }
    ChangeToStop();
    showResetButton();
@@ -56,7 +69,7 @@ function showResetButton() {
 
 
 const onResetClick = () => {
-   time = minutesToPass * 60; //Сброс на исходное состояние
+   time = minutesForFocus * 60; //Сброс на исходное состояние
    displayTime();
    hideResetButton();
    StopTimer();
@@ -69,8 +82,19 @@ function displayTime() {
    let min = Math.floor(time / 60); // Вычесляю сколько осталось минут 
    let sec = time % 60;// Вычесляю сколько осталось секунд
    
-   display.style.color = time === 0  ? 'silver' : 'rgb(37 99 235)';
+   display.style.color = time === 0  ? 'silver' : ( step % 2 ?  'rgb(37 99 235)' :  'green')
+
+
+
+
    display.innerHTML =  ((min < 10) ?  "0" + min : min) + ':' + ((sec < 10) ? "0" + sec : sec);
+
+
+   TextTimer.innerHTML = step % 2 ?  'Focus' : ( step === 4 ? 'Long' : 'Short' ) + ' Break';
+
+   Count.innerHTML = Math.ceil(step / 2) + "/4"
+
+
 }
 
 function ChangeToStart (){
