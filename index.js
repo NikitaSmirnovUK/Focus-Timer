@@ -25,6 +25,7 @@ function tick() {
    if (time === 0) {
       time = (step % 2 ? (step === 4 ? minutesForLongBreak : minuteForShortBreak ) : minutesForFocus) * 60;
       step += 1
+      audio.play();
    }
 
 }
@@ -106,3 +107,8 @@ function ChangeToStop(){
 }
 
 displayTime();
+
+
+let audio = new Audio();
+audio.preload = 'auto';
+audio.src = '/sound/ticking-90432.mp3';
