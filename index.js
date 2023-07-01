@@ -6,7 +6,7 @@ const Count = document.getElementById('stepCount');
 
 
 
-const minutesForFocus = 10 / 60; //Минуты от которых идет отсчет таймера 
+const minutesForFocus = 100 / 60; //Минуты от которых идет отсчет таймера 
 const minuteForShortBreak = 5 / 60; 
 const minutesForLongBreak = 10 / 60;
 
@@ -83,19 +83,18 @@ function displayTime() {
    let min = Math.floor(time / 60); // Вычесляю сколько осталось минут 
    let sec = time % 60;// Вычесляю сколько осталось секунд
    
-   display.style.color = time === 0  ? 'silver' : ( step % 2 ?  'rgb(37 99 235)' :  'green')
-
-
-
+   display.style.color = time === 0  ? 'gray' : ( step % 2 ?  'silver' :  'green')
 
    display.innerHTML =  ((min < 10) ?  "0" + min : min) + ':' + ((sec < 10) ? "0" + sec : sec);
-
 
    TextTimer.innerHTML = step % 2 ?  'Focus' : ( step === 4 ? 'Long' : 'Short' ) + ' Break';
 
    Count.innerHTML = Math.ceil(step / 2) + "/4"
 
-
+   const progress = document.getElementById('progress');
+   const classToDelete = Array.from(progress.classList).find( c => c.startsWith('progress-') );
+   progress.classList.remove(classToDelete);
+   progress.classList.add('progress-' + Math.floor( time * 100 / (minutesForFocus * 60) ) )
 }
 
 function ChangeToStart (){

@@ -1,8 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:700);
-
 
 body {
-   background: #34345E;
+   background: #2e384a;
 }
 
 
@@ -16,20 +14,23 @@ body {
 
 button {
    cursor: pointer;
+   background: transparent;
+   border: 3px solid silver;
+   color: silver;
    border-radius: 50%;
-   width: 50px;
-   height: 50px;
-   
+   width: 60px;
+   height: 60px;
+}
 
+button:hover {
+    background: #c0c0c036;
 }
 
 .timer {
     font-size: 60px;
     margin: 1rem;
     padding: 1rem;
-    color: rgb(37 99 235);
-    
-    
+    color: silver;
 }
 
 .hidden {
@@ -39,3 +40,20 @@ button {
 .text-timer {
     margin-bottom: 20px;
 }
+
+
+.text-timer {
+    font-size: 30px;
+    color:silver;
+}
+
+.step {
+    font-size: 20px;
+    color: silver;
+    margin: 1rem
+}
+
+
+
+
+
