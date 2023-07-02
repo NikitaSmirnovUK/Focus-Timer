@@ -1,0 +1,21 @@
+{
+  "name": "focus-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "mode": "development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikitaSmirnovUK/Focus-Timer.git"
+  },
+  "author": "Nikita Smirnov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikitaSmirnovUK/Focus-Timer/issues"
+  },
+  "homepage": "https://github.com/NikitaSmirnovUK/Focus-Timer#readme"
+}

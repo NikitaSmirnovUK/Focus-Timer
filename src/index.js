@@ -1,19 +1,18 @@
+import audio from "./audio";
+
 const display = document.getElementById('display');
 const startAndStopButton = document.getElementById('startAndStop');
 const resetButton = document.getElementById('reset'); // Element
 const TextTimer = document.getElementById('StateTimer'); 
 const Count = document.getElementById('stepCount');
 
-
-
-const minutesForFocus = 100 / 60; //Минуты от которых идет отсчет таймера 
+const minutesForFocus = 10 / 60; //Минуты от которых идет отсчет таймера 
 const minuteForShortBreak = 5 / 60; 
 const minutesForLongBreak = 10 / 60;
 
 let time = minutesForFocus * 60; // Для отсчета сколько осталось времени!
 let isTimerStarted = false; // Содержит состояние таймера
 let step = 1;
-
 
 
 
@@ -93,7 +92,7 @@ function displayTime() {
 
    const progress = document.getElementById('progress');
    const classToDelete = Array.from(progress.classList).find( c => c.startsWith('progress-') );
-   progress.classList.remove(classToDelete);
+   progress.classList.remove(classToDelete);   
    progress.classList.add('progress-' + Math.floor( time * 100 / (minutesForFocus * 60) ) )
 }
 
@@ -107,7 +106,3 @@ function ChangeToStop(){
 
 displayTime();
 
-
-let audio = new Audio();
-audio.preload = 'auto';
-audio.src = '/sound/ticking-90432.mp3';
